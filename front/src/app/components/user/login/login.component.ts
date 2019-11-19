@@ -2,8 +2,8 @@ import { AuthService } from './../../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Profile } from './../../../interfaces/Profile';
-import { strorage } from 'angular-storage';
+import { token } from '../../../interfaces/token';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +22,8 @@ export class LoginComponent implements OnInit {
   }
   enviar(data) {
     console.log(data.value);
-    this.api.loginUser(data.value).subscribe((response:Profile) => {
-      // Caso en el que todo ha ido bien.
-      
+    this.api.loginUser(data.value).subscribe((response: token) => {
+      this.api.token(response.token);
       alert('Login correcto');
       this.router.navigateByUrl('/user/profile');
     }, (error: HttpErrorResponse) => {

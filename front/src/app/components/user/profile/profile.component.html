@@ -1,1 +1,29 @@
-<p>profile works!</p>
+<h3>Book Searcher</h3>
+<p class="text-muted">fill any of these parameter to get a book</p>
+<hr>
+
+<form #Form="ngForm" (ngSubmit)="title(Form)">
+    <input class="form-group" type="text" class="form-control" id="title" placeholder="title" [(ngModel)]="book.title" name="title">
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+<br>
+<form #Form2="ngForm" (ngSubmit)="ISBN(Form2)">
+    <input class="form-group" type="text" class="form-control" id="ISBN" placeholder="ISBN" [(ngModel)]="book.ISBN" name="ISBN">
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+<br>
+<form #Form3="ngForm" (ngSubmit)="author(Form3)">
+    <input class="form-group" type="text" class="form-control" id="author" placeholder="author" [(ngModel)]="book.author" name="author">
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+<br>
+<form #Form4="ngForm" (ngSubmit)="price(Form5)">
+    <input class="form-group" type="text" class="form-control" id="price" placeholder="price" [(ngModel)]="book.price" name="price">
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+<br>
+<form #Form5="ngForm" (ngSubmit)="date(Form5)">
+    <input class="form-group" type="text" class="form-control" id="date" placeholder="date" [(ngModel)]="book.date" name="date">
+  <button type="submit" class="btn btn-success">Search</button>
+</form>
+<br>

@@ -16,4 +16,7 @@ export class AppComponent {
   login() {
     this.router.navigateByUrl('/user/login');
   }
+  register(){
+    this.router.navigateByUrl('user/register')
+  }
 }

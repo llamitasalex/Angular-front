@@ -1,0 +1,10 @@
+<h3>Register</h3>
+<p class="text-muted">Rellena con tus datos</p><hr>
+<form #formulario="ngForm" (ngSubmit)="registrar(formulario.form)">
+  <input placeholder="name" name="name" type="text" class="form-control" ngModel required><br>
+  <input placeholder="surname" name="surname" type="text" class="form-control" ngModel required><br>
+  <input placeholder="E-mail" name="mail" type="text" class="form-control" ngModel required><br>
+  <input placeholder="phone" name="phone" type="text" class="form-control" ngModel required><br>
+  <input placeholder="password" name="password" type="password" class="form-control" ngModel required><br>
+  <button class="btn btn-outline-dark btn-block" type="submit">Enviar</button>
+</form>
