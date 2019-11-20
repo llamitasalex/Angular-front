@@ -2,8 +2,12 @@ import { User } from './../interfaces/user';
 import { register } from './../interfaces/Register';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { headersToString } from 'selenium-webdriver/http';
 
+const httpOptions = {
+   header: new HttpHeaders({
+   'token-access': 'my-auth-token'
+ })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -36,22 +40,17 @@ export class AuthService {
     return this.http.get(`${this.adress}book/date/${date}`);
   }
   token(token: string){
-   const httpOptions = {
-     header: new HttpHeaders({
-      'token-access': 'my-auth-token'
-    })
-   }
-    httpOptions.header= httpOptions.header.set('token-access', token )
-    console.log(httpOptions.header.get('token-access') )
-    return this.http.get(`${this.adress}book/me/token`);
+    httpOptions.header= httpOptions.header.set('token-access', token );
+    console.log(httpOptions.header.get('token-access'));
   }
-
-  AuthToken(){
-    return this.http.get(`${this.adress}user/me/token`);
+  authToken(token: string){
+    httpOptions.header= httpOptions.header.set('token-access', token );
+    //httpOptions.header.get('token-access');
+    return this.http.get(`${this.adress}user/me/token`, { headers : httpOptions.header} );
   }
   
- /* token(header:string) {
-    const headers:HttpHeaders = new HttpHeaders().set('token', header)
-    return this.http.get(`${this.adress}book/date`, {headers});
+/*  token(token:string) {
+    const headers:HttpHeaders = new HttpHeaders().set('token-access', token)
+    return this.http.get(`${this.adress}user/me/token`, {headers});
   } */
 }

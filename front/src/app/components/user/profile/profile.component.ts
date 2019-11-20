@@ -1,4 +1,5 @@
-import { token } from './../../../interfaces/token';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 import { Book } from '../../../interfaces/book.model';
 import { AuthService } from './../../../service/auth.service';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
@@ -16,9 +17,19 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private api: AuthService,
+    private router: Router,
+    private cookieService: CookieService,
     ) { }
+
   ngOnInit() {
-    this.api.AuthToken()
+    const token = this.cookieService.get('token')
+    this.api.authToken(token).subscribe((response) => {
+      alert('token valido');
+    },(error: HttpErrorResponse) => {
+      alert(error.message);
+      this.router.navigateByUrl('/user/login');
+    });
+
   }
 
 title() {
@@ -27,7 +38,6 @@ title() {
       const book = JSON.stringify(obj);
       alert(book);
     }, (error: HttpErrorResponse) => {
-      // Caso en el que ha habido un error.
       alert(error.message);
     });
 }
@@ -35,7 +45,6 @@ ISBN() {
   this.api.BookISBN(this.book.ISBN).subscribe((response) => {
     alert('book find');
   }, (error: HttpErrorResponse) => {
-    // Caso en el que ha habido un error.
     alert(error.message);
   });
 }
@@ -43,7 +52,6 @@ author() {
   this.api.BookAuthor(this.book.author).subscribe((response) => {
     alert('book find');
   }, (error: HttpErrorResponse) => {
-    // Caso en el que ha habido un error.
     alert(error.message);
   });
 }
@@ -51,7 +59,6 @@ price() {
   this.api.BookPrice(this.book.price).subscribe((response) => {
     alert('book find');
   }, (error: HttpErrorResponse) => {
-    // Caso en el que ha habido un error.
     alert(error.message);
   });
 }
@@ -59,7 +66,6 @@ date() {
   this.api.BookDate(this.book.date).subscribe((response) => {
     alert('book find');
   }, (error: HttpErrorResponse) => {
-    // Caso en el que ha habido un error.
     alert(error.message);
   });
 }

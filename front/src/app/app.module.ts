@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RegisterComponent } from './components/user/register/register.component
     FormsModule,
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ CookieService],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
