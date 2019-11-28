@@ -1,10 +1,36 @@
-<hr><h2 class="text-center">{{title}}</h2><hr>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark ">
+    <a class="navbar-brand" href="#">Front</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <button class="btn  text-white-50 btn-dark" (click)="search()" >Book search</button>
+        <ul class="navbar-nav mr-auto">
+    
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  User
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" (click)="login()">Login</a>
+                  <a class="dropdown-item" (click)="register()">Register</a>
+                </div>
+                <div>
+              </div>
+              </li>
+    
+        </ul>
+      </div>
+      
+</nav>
+
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <button type="button" class="btn btn-outline-dark btn-block" (click)="login()">Login</button>
-      <button type="button" class="btn btn-outline-dark btn-block" (click)="register()">register</button>
-    </div>
-</div>
-<hr>
-<router-outlet></router-outlet>
+    <div class="row">
+      <div class="col">
+       
+      </div>
+  </div>
+  <hr>
+  <router-outlet></router-outlet>

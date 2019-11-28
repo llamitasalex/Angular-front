@@ -1,10 +1,9 @@
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { Book } from '../../../interfaces/book.model';
 import { AuthService } from './../../../service/auth.service';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { book } from '../../../interfaces/bookrp'
+import { Alert, ALERT1 } from '../../../interfaces/alert';
 
 @Component({
   selector: 'app-profile',
@@ -13,62 +12,75 @@ import { book } from '../../../interfaces/bookrp'
 })
 export class ProfileComponent implements OnInit {
 
-  book = new Book
+  book = new Object();
+  alerts: Alert[];
+
 
   constructor(
     private api: AuthService,
     private router: Router,
     private cookieService: CookieService,
-    ) { }
+    
+  ) { }
 
   ngOnInit() {
     const token = this.cookieService.get('token')
     this.api.authToken(token).subscribe((response) => {
-      alert('token valido');
-    },(error: HttpErrorResponse) => {
-      alert(error.message);
+    }, (error: HttpErrorResponse) => {
       this.router.navigateByUrl('/user/login');
     });
-
   }
 
-title() {
-    this.api.Booktitle(this.book.title).subscribe((response: book) => {
-      const obj = response;
-      const book = JSON.stringify(obj);
-      alert(book);
+  close(alert: Alert) {
+    this.alerts.splice(this.alerts.indexOf(alert), 1);
+  }
+
+
+  title(form) {
+    console.log(form.value);
+    this.api.Booktitle(form.value.data).subscribe((response: {book: Object}) => {
+      console.log(response);
+      this.book = response.book;
     }, (error: HttpErrorResponse) => {
-      alert(error.message);
+      //alert(error.message);
+      this.alerts = Array.from(ALERT1);
     });
-}
-ISBN() {
-  this.api.BookISBN(this.book.ISBN).subscribe((response) => {
-    alert('book find');
-  }, (error: HttpErrorResponse) => {
-    alert(error.message);
-  });
-}
-author() {
-  this.api.BookAuthor(this.book.author).subscribe((response) => {
-    alert('book find');
-  }, (error: HttpErrorResponse) => {
-    alert(error.message);
-  });
-}
-price() {
-  this.api.BookPrice(this.book.price).subscribe((response) => {
-    alert('book find');
-  }, (error: HttpErrorResponse) => {
-    alert(error.message);
-  });
-}
-date() {
-  this.api.BookDate(this.book.date).subscribe((response) => {
-    alert('book find');
-  }, (error: HttpErrorResponse) => {
-    alert(error.message);
-  });
-}
+  }
 
-
+  ISBN(form) {
+    console.log(form.value);
+    this.api.BookISBN(form.value.data).subscribe((response: {book: Object}) => {
+      console.log(response);
+      this.book = response.book;
+    }, (error: HttpErrorResponse) => {
+      this.alerts = Array.from(ALERT1);
+    });
+  }
+  author(form) {
+    console.log(form.value);
+    this.api.BookAuthor(form.value.data).subscribe((response: {book: Object}) => {
+      console.log(response);
+      this.book = response.book;
+    }, (error: HttpErrorResponse) => {
+      this.alerts = Array.from(ALERT1);
+    });
+  }
+  price(form) {
+    console.log(form.value);
+    this.api.BookPrice(form.value.data).subscribe((response: {book: Object}) => {
+      console.log(response);
+      this.book = response.book;
+    }, (error: HttpErrorResponse) => {
+      this.alerts = Array.from(ALERT1);
+    });
+  }
+  date(form) {
+    console.log(form.value);
+    this.api.BookDate(form.value.data).subscribe((response: {book: Object}) => {
+      console.log(response);
+      this.book = response.book;
+    }, (error: HttpErrorResponse) => {
+      this.alerts = Array.from(ALERT1);
+    });
+  }
 }

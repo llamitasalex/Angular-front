@@ -19,4 +19,7 @@ export class AppComponent {
   register(){
     this.router.navigateByUrl('user/register')
   }
+  search(){
+    this.router.navigateByUrl('/user/profile')
+  }
 }
