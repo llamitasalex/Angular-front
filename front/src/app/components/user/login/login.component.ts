@@ -2,7 +2,6 @@ import { AuthService } from './../../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { token } from '../../../interfaces/token';
 import { CookieService } from 'ngx-cookie-service';
 import { Alert, ALERT2 } from '../../../interfaces/alert';
  
@@ -29,12 +28,10 @@ export class LoginComponent implements OnInit {
   }
 
   enviar(data) {
-    console.log(data.value);
-    this.api.loginUser(data.value).subscribe((response: token) => {
-      alert('Login correcto');
+    this.api.loginUser(data.value).subscribe((response: {token: string}) => {
       this.cookieService.set('token', response.token);
       this.api.token(response.token);
-      this.router.navigateByUrl('/user/profile');
+      this.router.navigateByUrl('/books/search');
     }, (error: HttpErrorResponse) => {
       // alert(error.message);
       this.alerts = Array.from(ALERT2);

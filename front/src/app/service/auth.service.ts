@@ -24,7 +24,10 @@ export class AuthService {
   registerUser(register:register){
     return this.http.post(`${this.adress}user/`, register);
   }
-  Booktitle(title: string) {
+  getUser(mail: string){
+    return this.http.get(`${this.adress}user/profile/${mail}`);
+  }
+  Booktitle(title: string){
     return this.http.get(`${this.adress}book/title/${title}`);
   }
   BookISBN(isbn: string){
@@ -41,16 +44,10 @@ export class AuthService {
   }
   token(token: string){
     httpOptions.header= httpOptions.header.set('token-access', token );
-    console.log(httpOptions.header.get('token-access'));
   }
   authToken(token: string){
     httpOptions.header= httpOptions.header.set('token-access', token );
-    //httpOptions.header.get('token-access');
     return this.http.get(`${this.adress}user/me/token`, { headers : httpOptions.header} );
   }
   
-/*  token(token:string) {
-    const headers:HttpHeaders = new HttpHeaders().set('token-access', token)
-    return this.http.get(`${this.adress}user/me/token`, {headers});
-  } */
 }
