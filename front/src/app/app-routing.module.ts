@@ -1,4 +1,3 @@
-import { ProfileComponent } from './components/user/profile/profile.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { searchComponent } from './components/books/search/search.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -11,7 +10,6 @@ const routes: Routes = [
   { path:'user/login', component: LoginComponent },
   { path:'books/search', component: searchComponent },
   { path:'user/register', component: RegisterComponent },
-  { path:'user/profile', component: ProfileComponent},
   { path:'home', component: MainPageComponent },
 ];
 

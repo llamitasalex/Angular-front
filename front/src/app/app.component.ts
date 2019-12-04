@@ -25,9 +25,6 @@ export class AppComponent implements OnInit{
   register(){
     this.router.navigateByUrl('user/register')
   }
-  profile(){
-    this.router.navigateByUrl('/user/profile')
-  }
   search(){
     this.router.navigateByUrl('/books/search')
   }

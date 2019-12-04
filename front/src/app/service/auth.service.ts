@@ -1,3 +1,4 @@
+import { Book } from './../interfaces/book';
 import { User } from './../interfaces/user';
 import { register } from './../interfaces/Register';
 import { Injectable } from '@angular/core';
@@ -26,6 +27,9 @@ export class AuthService {
   }
   getUser(mail: string){
     return this.http.get(`${this.adress}user/profile/${mail}`);
+  }
+  Book(par:string){
+    return this.http.get(`${this.adress}book/search/${par}`);
   }
   Booktitle(title: string){
     return this.http.get(`${this.adress}book/title/${title}`);
